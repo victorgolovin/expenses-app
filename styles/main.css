@@ -1,0 +1,9 @@
+@import url(..//styles/reset.css);
+@import url(..//styles/index.css);
+
+body {
+    background-color: black;
+    color: white;
+    font-family: 'Inter', sans-serif;
+}
+

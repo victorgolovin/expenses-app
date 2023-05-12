@@ -1,0 +1,18 @@
+.expenses-section {
+    margin-top: 67px;
+}
+
+.container {
+    width: 880px;
+    margin: 0 auto;
+}
+
+.expens-main {
+    display: flex;
+    gap: 28px;
+}
+
+.expens-info {
+    display: flex;
+    flex-direction: column;
+}

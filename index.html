@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/styles/main.css">
+</head>
+<body>
+    <main>
+        <section class="expenses-section">
+            <div class="container">
+                <h1>Учет расходов</h1>
+                <div class="expens-main">
+                    <input class="expens-input" 
+                    type="number">
+                    <button class="expense-button">Добавить</button>
+                </div>
+                <div class="expens-info">
+                    <p>Лимит: 10000 руб.</p>
+                    <p>Всего: 1350 руб.</p>
+                    <p>Статус: все хорошо</p>
+                    <div class="expense-history-inner">
+                        <h2>История трат:</h2>
+                        <div class="js-history history-list"></div>
+                    </div>
+                </div>
+                <button class="expense-reset">Сбросить расходы</button>
+            </div>
+        </section>
+    </main>
+    
+
+    
+</body>
+</html>
