@@ -3,16 +3,89 @@
 }
 
 .container {
-    width: 880px;
+    width: 882px;
     margin: 0 auto;
 }
 
-.expens-main {
-    display: flex;
-    gap: 28px;
+.expenses-title {
+    font-weight: bold;
+    font-size: 32px;
+    line-height: 39px;
+    margin-bottom: 39px;
 }
 
-.expens-info {
+.expense-main {
+    height: 150px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 28px;
+    margin-bottom: 65px;
+}
+
+.expense-input,
+.expense-change-input {
+    width: 446px;
+    height: 58px;
+    font-size: 32px;
+    line-height: 39px;
+    padding-left: 17px;
+    padding-right: 20px;
+}
+
+.expense-button {
+    padding: 10px 110px 10px 110px;
+    font-size: 32px;
+    line-height: 39px;
+    color: white;
+    background-color: #0094FF;
+    cursor: pointer;
+}
+
+.expense-button:hover {
+    opacity: 0.5;
+}
+
+.expense-content {
+    display: flex;
+    justify-content: space-between;
+    gap: 200px;
+}
+
+.limit-text,
+.sum-text,
+.status-text {
+    /* font-weight: bold; */
+    font-size: 32px;
+    line-height: 39px;
+}
+
+.status {
+    color: green;
+}
+
+.status-red {
+    color: red;
+}
+
+.history-title {
+    font-weight: bold;
+    font-size: 32px;
+    line-height: 39px;
+    margin-bottom: 21px;
+}
+
+.expense-button-reset {
+    position: absolute;
+    top: 623px;
+    padding: 10px 82px 10px 107px;
+    font-size: 32px;
+    line-height: 39px;
+    color: white;
+    background-color: red;
+    cursor: pointer; 
+}
+
+.expense-button-reset:hover {
+    opacity: 0.5;
 }

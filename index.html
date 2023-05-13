@@ -16,27 +16,39 @@
     <main>
         <section class="expenses-section">
             <div class="container">
-                <h1>Учет расходов</h1>
-                <div class="expens-main">
-                    <input class="expens-input" 
+                <h1 class="expenses-title">Учет расходов</h1>
+                <div class="expense-main">
+                    <input class="js-expense-input expense-input" 
                     type="number">
-                    <button class="expense-button">Добавить</button>
+                    
+                    <button class="js-expense-button expense-button">Добавить</button>
+                    <input class="expense-change-input" 
+                    type="text">
                 </div>
-                <div class="expens-info">
-                    <p>Лимит: 10000 руб.</p>
-                    <p>Всего: 1350 руб.</p>
-                    <p>Статус: все хорошо</p>
-                    <div class="expense-history-inner">
-                        <h2>История трат:</h2>
+                
+                <div class="expense-content">
+                    <div class="expense-info">
+                        <p class="limit-text">Лимит: 
+                            <span class="js-limit limit"></span>
+                        руб.</p>
+                        <p class="sum-text">Всего: 
+                        <span class="js-sum sum"></span> 
+                        руб.</p>
+                        <p class="status-text">Статус: 
+                        <span class="js-status status"></span>
+                            </p>
+                    </div>
+                    <div class="history-inner">
+                        <h2 class="history-title">История трат:</h2>
                         <div class="js-history history-list"></div>
                     </div>
                 </div>
-                <button class="expense-reset">Сбросить расходы</button>
+                <button class="expense-button-reset">Сбросить расходы</button>
             </div>
         </section>
     </main>
     
 
-    
+    <script src="index.js"></script>
 </body>
 </html>
