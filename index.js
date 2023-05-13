@@ -3,6 +3,7 @@ const CURRENSY = 'руб.';
 const STATUS_IN_LIMIT = 'Все хорошо';
 const STATUS_OUT_OF_LIMIT = 'Все плохо';
 const STATUS_OUT_OF_LIMIT_CLASS_NAME = 'status-red';
+// const RESET = [];
 
 const inputNode = document.querySelector('.js-expense-input');
 const buttonNode = document.querySelector('.js-expense-button');
@@ -10,6 +11,8 @@ const historyNode = document.querySelector('.js-history');
 const sumNode = document.querySelector('.js-sum');
 const limitNode = document.querySelector('.js-limit');
 const statusNode = document.querySelector('.js-status');
+
+// const resetButtonNode = document.querySelector('.js-expense-button-reset')
 
 const expenses = [];
 
@@ -27,6 +30,10 @@ buttonNode.addEventListener('click', function() {
 
     render(expenses);
 });
+
+// resetButtonNode.addEventListener('click', function() {
+//     renderHistoryReset();
+// });
 
 function initApp(expenses) {
     limitNode.innerText = LIMIT;
@@ -81,6 +88,16 @@ function renderHistory(expenses) {
 
     historyNode.innerHTML = `<ol>${expensesListHTML}</ol>`;
 }
+
+// function renderHistoryReset() {
+//      let resetListHTML = 0;
+
+//     expenses.forEach(element => { 
+//         resetListHTML =`<li>${RESET}</li>`;
+//     });
+
+//     historyNode.innerHTML = `<ol>${resetListHTML}</ol>`;
+// }
 
 function renderSum(sum) {
     sumNode.innerText = sum;
