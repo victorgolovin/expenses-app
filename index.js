@@ -1,113 +1,189 @@
-const LIMIT = 10000;
-const CURRENSY = 'руб.';
-const STATUS_IN_LIMIT = 'Все хорошо';
-const STATUS_OUT_OF_LIMIT = 'Все плохо';
-const STATUS_OUT_OF_LIMIT_CLASS_NAME = 'status-red';
-// const RESET = [];
+// ПОСЛЕ РЕФАКТОРИНГА (С КОММЕНТАМИ) ЧАСТЬ 2
 
-const inputNode = document.querySelector('.js-expense-input');
-const buttonNode = document.querySelector('.js-expense-button');
-const historyNode = document.querySelector('.js-history');
-const sumNode = document.querySelector('.js-sum');
-const limitNode = document.querySelector('.js-limit');
-const statusNode = document.querySelector('.js-status');
+// Объявление переменныйх - Строковых констант
+const STATUS_IN_LIMIT = "Все хорошо";
+const STATUS_OUT_OF_LIMIT = "Все плохо";
+const CHANGE_LIMIT_TEXT = "Новый лимит";
 
-// const resetButtonNode = document.querySelector('.js-expense-button-reset')
+// Объявление переменныйх - ссылок на html элементы
+const inputNode = document.getElementById("expenseInput");
+const categorySelectNode = document.getElementById("categorySelect");
+const addButtonNode = document.getElementById("addButton");
+const clearBunntonNode = document.getElementById("clearButton");
+const totalValueNode = document.getElementById("totalValue");
+const statusNode = document.getElementById("statusText");
+const historyList = document.getElementById("historyList");
+const changeLimitBtn = document.getElementById("changeLimitBtn");
 
-const expenses = [];
+// Получаем лимит из элемента HTML с id limitValue
+const limitNode = document.getElementById("limitValue");
+let limit = parseInt(limitNode.innerText);
 
-initApp(expenses);
+// Объявление нашей основной переменной
+// При сапуске она содержит в себе пустой массив
+// Который мы пополняем по нажатию Добавить
+let expenses = [];
 
+// ---ФУНКЦИИ------------------------------------------------------------
 
-buttonNode.addEventListener('click', function() {
-    const expense = getExpensFromUser();
+// Подсчитываем и возвращаем сумму всех трат
+function getTotal() {
+  let sum = 0;
+  expenses.forEach(function (expense) {
+    // пробегаем по массиву обьектов expense, берем из каждого поле amount
+    // и прибавляем к переменной sum
+    sum += expense.amount;
+  });
 
-    if (!expense) {
-        return;
-    }
+  return sum;
+}
 
-    trackExpens(expense);
+// Отрисовывает/обновляет блог с "Всего", "Лимит" и "Статус"
+function renderStatus() {
+  // Создаем переменную total(всего) и записываем в нее результат выполнения getTotal
+  const total = getTotal(expenses);
+  totalValueNode.innerText = total;
 
-    render(expenses);
-});
-
-// resetButtonNode.addEventListener('click', function() {
-//     renderHistoryReset();
-// });
-
-function initApp(expenses) {
-    limitNode.innerText = LIMIT;
+  // Условие сравнения - что больше всего или лимит
+  if (total <= limit) {
+    // всего меньше чем лимит - хорошо
     statusNode.innerText = STATUS_IN_LIMIT;
-    sumNode.innerText = calculateExpanses(expenses);
+    statusNode.className = "stats-statusText-positive";
+  } else {
+    // всего меньше чем лимит - все плохо
+
+    // шаблонная строка - строка в которую можно вставить переменные
+    // тут вставлена переменная STATUS_OUT_OF_LIMIT
+    // и будет вставлено значение разницы между лимитом и общей суммой расходов
+    statusNode.innerText = `${STATUS_OUT_OF_LIMIT} (${limit - total} руб)`;
+    statusNode.className = "stats-statusText-negative";
+  }
 }
 
-function trackExpens(expense) {
-    expenses.push(expense);
+// Отрисовываем/обновляет блок
+function renderHistory() {
+  historyList.innerHTML = "";
+  // сокращаем запись:
+  // expenses.forEach((expense) => {})
+
+  // цикл по массиву expenses, где каждый элемент - запись в расходе (сумма и категория)
+  expenses.forEach(function (expense) {
+    // создание элемента li (он пока создан только в памяти)
+    const historyItem = document.createElement("li");
+
+    // через свойство className так же можно прописывать классы
+    historyItem.className = "rub";
+
+    // снова создаем шаблонную строку
+    // форма "категория" - "сумма" (а не наоборот, чтобы не усложнять html)
+
+    historyItem.innerText = `${expense.category} - ${expense.amount}`;
+
+    // берем нам li из памяти и вставляем в документ, в конце historyList
+    historyList.appendChild(historyItem);
+  });
 }
 
-function getExpensFromUser() {
-    if (!inputNode.value) { 
-        return null; 
-    }
+// Отрисовываем/обновляем весь интерфейс (в нашем случае историю, всего, статус)
+function render() {
+  // вызываем функцию обновления статуса и "всего"
+  renderStatus();
 
-    const expense = parseInt (inputNode.value);
-
-    clearInput();  
-
-    return expense;
+  // вызываем функцию обновления истории
+  renderHistory();
 }
 
-function clearInput () {
-    inputNode.value = '';
+// Возвращет введенную пользователем сумму
+function getExpenseFromUser() {
+  return parseInt(inputNode.value);
 }
 
-function calculateExpanses(expenses) {
-    let sum = 0;
-
-    expenses.forEach(element => {
-        sum += element;
-    });
-
-    return sum;
+// Возвращает выбранную пользователем категорию
+function getSelectedCategory() {
+  return categorySelectNode.value;
 }
 
-function render(expenses) {
-    const sum = calculateExpanses(expenses);
+// Фукнция очистки поля ввода суммы
+// на вход получаем переменную input, в которой мы ожидаем html элемент input
 
-    renderHistory(expenses);
-    renderSum(sum);
-    renderStatus(sum);
+// альтернативы
+/*function clearInput(input) {
+    input.value = "";
+}*/
+
+const clearInput = function (input) {
+  input.value = "";
+};
+
+/*const clearInput = (input) => {
+    input.value = "";
+}*/
+
+// Функция-обработчик которая будет вызвана при нажатии на кнопку Добавить
+function addButtonHandler() {
+  // Сохраняем в переменную currentAmount(текущаяСумма) введите сумму
+  const currentAmount = getExpenseFromUser();
+  if (!currentAmount) {
+    return;
+  }
+
+  // созраняем в переменную currentcategory(текущаяКатегория) выбранную категорию
+  const currentCategory = getSelectedCategory();
+  // если текущаяКатегория равна значению Категория
+  if (currentCategory === "Категория") {
+    // тогда выйди из функции, т.к это значение говорит нам о том
+    // что пользователь не выбрал категорию
+    return;
+  }
+
+  // из полученых переменных собераем обьект newExpense(новыйРасход)
+  // который состоит из двух полей - amount, в которое записано значение currentAmount
+  // и category, в которое записано значение currentCategory
+  const newExpense = { amount: currentAmount, category: currentCategory };
+  console.log(newExpense);
+  // Добавляем наш новыйРасход в массив расходов
+  expenses.push(newExpense);
+
+  // console.log(expenses);
+
+  // перерисовываем интерфейс
+  render();
+
+  // сбрасываем введенную сумму
+  clearInput(inputNode);
 }
 
-function renderHistory(expenses) {
-    let expensesListHTML = '';
-
-    expenses.forEach(element => { 
-        expensesListHTML +=`<li>${element} ${CURRENSY}</li>`;
-    });
-
-    historyNode.innerHTML = `<ol>${expensesListHTML}</ol>`;
+// Функция-обработчик (хендлер) кнопки Сбросить расходы
+function clearButtonHandler() {
+  expenses = [];
+  render();
 }
 
-// function renderHistoryReset() {
-//      let resetListHTML = 0;
+// Функция-обработчик (хендлер) кнопка изминения лимита
+function changeLimitHandler() {
+  // в переменную newLimit мы записываем результат выполнения   функции prompt
+  // которой передаем параметр "Новый лимит"
+  // prompt вызывает встроенную в браузер модалку с инпутом 
+  // а возвращает то что ввел в инпут пользователь 
+  const newLimit = prompt(CHANGE_LIMIT_TEXT);
 
-//     expenses.forEach(element => { 
-//         resetListHTML =`<li>${RESET}</li>`;
-//     });
+  // потому-что там может быть строка
+  const newLimitValue = parseInt(newLimit);
 
-//     historyNode.innerHTML = `<ol>${resetListHTML}</ol>`;
-// }
+  if (!newLimitValue) {
+    return
+  }
 
-function renderSum(sum) {
-    sumNode.innerText = sum;
+  // прописываем в html новое значение лимита   
+  limitNode.innerText = newLimitValue;
+  // а так же прописываем это значение в нашу   переменную с лимитом 
+  limit = newLimitValue;
+
+  // обновляем интерфейс
+  render();
 }
 
-function renderStatus (sum) {
-    if (sum <= LIMIT) {
-        statusNode.innerText = STATUS_IN_LIMIT;
-    } else {
-        statusNode.innerText = STATUS_OUT_OF_LIMIT;
-        statusNode.classList.add(STATUS_OUT_OF_LIMIT_CLASS_NAME);
-    }
-}
+// Привязка функции-обработчиков к кнопкам
+addButtonNode.addEventListener("click", addButtonHandler);
+clearBunntonNode.addEventListener("click", clearButtonHandler);
+changeLimitBtn.addEventListener("click", changeLimitHandler);

@@ -1,54 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Expenses App</title>
+    <link rel="stylesheet" href="styles/main.css">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div class="expenses">
+        <div class="container">
+            <h1 class="expensesTitle">Учет расходов</h1>
+        <div class="expensesInputList">
+        <div class="moneyInput rub">
+          <input 
+          class="moneyInput-input" 
+          type="number" 
+          min="1"
+          id="expenseInput" 
+           />
+           <select id="categorySelect" class="categorySelect">
+            <option hidden disabled selected value="Категория">Категория</option>
+            <option value="Продукты">Продукты</option>
+            <option value="Кафе">Кафе и рестораны</option>
+            <option>Квартира</option>
+            <option>Авто</option>
+          </select>
+        </div>
+        
+        <div class="expenses-button">
+            <button id="addButton" class="addButton">Добавить</button>
+        </div>
+      </div>
 
-    <link rel="stylesheet" href="/styles/main.css">
-</head>
-<body>
-    <main>
-        <section class="expenses-section">
-            <div class="container">
-                <h1 class="expenses-title">Учет расходов</h1>
-                <div class="expense-main">
-                    <input class="js-expense-input expense-input" 
-                    type="number">
-                    
-                    <button class="js-expense-button expense-button">Добавить</button>
-                    <input class="expense-change-input" 
-                    type="text">
-                </div>
-                
-                <div class="expense-content">
-                    <div class="expense-info">
-                        <p class="limit-text">Лимит: 
-                            <span class="js-limit limit"></span>
-                        руб.</p>
-                        <p class="sum-text">Всего: 
-                        <span class="js-sum sum"></span> 
-                        руб.</p>
-                        <p class="status-text">Статус: 
-                        <span class="js-status status"></span>
-                            </p>
-                    </div>
-                    <div class="history-inner">
-                        <h2 class="history-title">История трат:</h2>
-                        <div class="js-history history-list"></div>
-                    </div>
-                </div>
-                <button class="js-expense-button-reset expense-button-reset">Сбросить расходы</button>
+      <div class="expenses-info-list">
+        <div class="stats">
+            <div class="stats-limit">
+              <span class="label">Лимит:</span>
+              <span id="limitValue" class="rub">10000 руб.</span>
+              <img 
+              id="changeLimitBtn"
+              class="stats-changeLimitBtn"
+              src="files/image 1.png" 
+              alt="изобращение смены лимита" 
+              >
             </div>
-        </section>
-    </main>
+            <div class="stats-total">
+              <span class="label">Всего:</span>
+              <span id="totalValue" class="rub">0 руб.</span>
+            </div>
+            <div class="stats-status">
+              <span class="label">Статус:</span>
+              <span id="statusText" class="stats-statusText-positive">
+                Все хорошо</span
+              >
+            </div>
+            <button id="clearButton" class="clear-button">Сбросить расходы</button>
+          </div>
+    
+          <div class="history">
+            <div class="history-title label">История:</div>
+            <ol id="historyList" class="historyList"></ol>
+          </div>
+      </div>
+    
+      
+        </div>
+    </div>
+    </div>
     
 
     <script src="index.js"></script>
-</body>
+  </body>
 </html>

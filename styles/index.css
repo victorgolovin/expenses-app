@@ -1,91 +1,291 @@
-.expenses-section {
+.expenses {
     margin-top: 67px;
+    margin-bottom: 100px;
 }
 
-.container {
-    width: 882px;
+.container{
+    width: 1150px;
     margin: 0 auto;
 }
 
-.expenses-title {
-    font-weight: bold;
+.expensesTitle {
+    font-weight: 700;
     font-size: 32px;
-    line-height: 39px;
-    margin-bottom: 39px;
+    line-height: 38px;
+    margin-bottom: 40px;
 }
 
-.expense-main {
-    height: 150px;
+.expensesInputList {
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
     gap: 28px;
+    width: 910px;
     margin-bottom: 65px;
 }
 
-.expense-input,
-.expense-change-input {
-    width: 446px;
+.moneyInput-input {
+    width: 484px;
     height: 58px;
     font-size: 32px;
-    line-height: 39px;
-    padding-left: 17px;
-    padding-right: 20px;
+    line-height: 38px;
+    padding: 10px 0 9px 22px;
+    margin-bottom: 20px;
 }
 
-.expense-button {
-    padding: 10px 110px 10px 110px;
+.categorySelect {
+    width: 510px;
+    height: 75px;
+    font-size: 32px;
+    line-height: 38px;
+    padding: 10px 0 9px 22px;
+}
+
+.addButton {
+    width: 370px;
+    height: 58px;
     font-size: 32px;
     line-height: 39px;
     color: white;
     background-color: #0094FF;
+    border: none;
     cursor: pointer;
 }
 
-.expense-button:hover {
-    opacity: 0.5;
-}
-
-.expense-content {
+.expenses-info-list {
     display: flex;
     justify-content: space-between;
-    gap: 200px;
+    width: 910px;
+    margin-bottom: 112px;
 }
 
-.limit-text,
-.sum-text,
-.status-text {
-    /* font-weight: bold; */
+.label {
+    font-weight: 700;
     font-size: 32px;
-    line-height: 39px;
+    line-height: 38px;
 }
 
-.status {
+.rub {
+    font-size: 32px;
+    line-height: 38px;
+}
+
+.stats-changeLimitBtn {
+    cursor: pointer;
+}
+
+.stats-statusText-positive {
+    font-size: 32px;
+    line-height: 38px;
     color: green;
 }
 
-.status-red {
+.stats-statusText-negative {
+    font-size: 32px;
+    line-height: 38px;
     color: red;
 }
 
 .history-title {
-    font-weight: bold;
-    font-size: 32px;
-    line-height: 39px;
-    margin-bottom: 21px;
+    margin-right: 215px;
 }
 
-.expense-button-reset {
-    position: absolute;
-    top: 623px;
-    padding: 10px 82px 10px 107px;
+.clear-button {
+    width: 484px;
+    height: 58px;
     font-size: 32px;
     line-height: 39px;
     color: white;
     background-color: red;
-    cursor: pointer; 
+    border: none;
+    cursor: pointer;
+    margin-top: 110px;
 }
 
-.expense-button-reset:hover {
-    opacity: 0.5;
+@media (max-width: 1249px) {
+    .container {
+        width: 100%;
+        padding-left: 50px;
+        padding-right: 50px;
+    }
+
+}
+
+@media (max-width: 1029px) {
+    .expenses {
+        margin-bottom: 60px;
+    }
+
+    .expensesTitle {
+        font-size: 20px;
+        line-height: 30px;
+        margin-bottom: 30px;
+    }
+
+    .expensesInputList {
+        width: 650px;
+        margin-bottom: 50px;
+    }
+
+    .moneyInput-input {
+        width: 300px;
+        height: 30px;
+        font-size: 20px;
+        line-height: 30px;
+        padding: 10px 0 9px 22px;
+    }
+
+    .categorySelect {
+        width: 325px;
+        height: 50px;
+        font-size: 20px;
+        line-height: 30px;
+        padding: 10px 0 9px 22px;
+    }
+
+    .addButton {
+        width: 300px;
+        height: 50px;
+        font-size: 20px;
+        line-height: 30px;
+    }
+
+    .expenses-info-list {
+        width: 660px;
+        margin-bottom: 70px;
+    }
+    
+    .label {
+        font-weight: 700;
+        font-size: 20px;
+        line-height: 30px;
+    }
+
+    .stats {
+        width: 300px;
+    }
+
+
+    .rub {
+        font-size: 20px;
+        line-height: 30px;
+    }
+    
+    .stats-changeLimitBtn {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .stats-statusText-positive {
+        font-size: 20px;
+        line-height: 30px;
+        color: green;
+    }
+    
+    .stats-statusText-negative {
+        font-size: 20px;
+        line-height: 30px;
+        color: red;
+    }
+    
+    .history-title {
+        margin-right: 215px;
+    } 
+
+    .clear-button {
+        width: 300px;
+        height: 50px;
+        font-size: 20px;
+        line-height: 30px;
+        margin-top: 60px;
+    }
+}
+
+@media (max-width: 769px) {
+
+    .expensesInputList {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .expenses-info-list {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .clear-button {
+        margin-bottom: 40px;
+    }
+}
+
+@media (max-width: 435px) {
+    .moneyInput-input {
+        width: 200px;
+        height: 30px;
+        font-size: 15px;
+        line-height: 25px;
+        padding: 5px 0 5px 10px;
+    }
+
+    .categorySelect {
+        width: 215px;
+        height: 40px;
+        font-size: 15px;
+        line-height: 25px;
+        padding: 5px 0 5px 10px;
+    }
+
+    .addButton {
+        width: 215px;
+        height: 40px;
+        font-size: 15px;
+        line-height: 25px;
+    }
+
+    .expenses-info-list {
+        width: 100%;
+    }
+    
+    .label {
+        font-weight: 700;
+        font-size: 15px;
+        line-height: 25px;
+    }
+
+    .stats {
+        width: 250px;
+    }
+
+
+    .rub {
+        font-size: 15px;
+        line-height: 25px;
+    }
+    
+    .stats-changeLimitBtn {
+        width: 15px;
+        height: 15px;
+    }
+    
+    .stats-statusText-positive {
+        font-size: 15px;
+        line-height: 25px;
+        color: green;
+    }
+    
+    .stats-statusText-negative {
+        font-size: 15px;
+        line-height: 25px;
+        color: red;
+    }
+    
+    .history-title {
+        margin-right: 215px;
+    } 
+
+    .clear-button {
+        width: 215px;
+        height: 40px;
+        font-size: 15px;
+        line-height: 25px;
+        margin-top: 30px;
+    }
 }
