@@ -9,8 +9,18 @@ const clearBunntonNode = document.getElementById("clearButton");
 const totalValueNode = document.getElementById("totalValue");
 const statusNode = document.getElementById("statusText");
 const historyList = document.getElementById("historyList");
-const changeLimitBtn = document.getElementById("changeLimitBtn");
+const changeLimitBtn = document.getElementById("popup-inner-btn");
 const validationMessage = document.getElementById("expensesValidation-message");
+const popupInputNode = document.getElementById("expenses-popup-input");
+
+const POPUP_OPENED_CLASSNAME = "expenses-popup-open";
+const BODY_FIXED_CLASSNAME = "expenses-body-fixed";
+
+const bodyNode = document.getElementById("body");
+const popupNode = document.getElementById("expenses-popup");
+const btnOpenNode = document.getElementById("popup-changeLimitBtn");
+const popupContentNode = document.getElementById("expenses-popup")
+const btnCloseNode = document.getElementById("popup-close-btn");
 
 const limitNode = document.getElementById("limitValue");
 let limit = parseInt(limitNode.innerText);
@@ -116,7 +126,7 @@ const clearButtonHandler = () => {
 };
 
 const changeLimitHandler = () => {
-  const newLimit = prompt(CHANGE_LIMIT_TEXT);
+  const newLimit = popupInputNode.value;
   const newLimitValue = parseInt(newLimit);
 
   if (!newLimitValue) {
@@ -126,9 +136,25 @@ const changeLimitHandler = () => {
   limitNode.innerText = newLimitValue;
   limit = newLimitValue;
 
+  expensesTogglePopup()
   render();
 };
 
+// popup
+popupNode.addEventListener('click', (event) => {
+  const isClickOutsideContent = !event.composedPath().includes(popupContentNode)
+
+  if (isClickOutsideContent) {
+    expensesTogglePopup();
+  }
+})
+
+const expensesTogglePopup = () => {
+  popupNode.classList.toggle(POPUP_OPENED_CLASSNAME);
+}
+
+btnOpenNode.addEventListener('click', expensesTogglePopup);
+btnCloseNode.addEventListener('click', expensesTogglePopup);
 addButtonNode.addEventListener("click", addButtonHandler);
 clearBunntonNode.addEventListener("click", clearButtonHandler);
 changeLimitBtn.addEventListener("click", changeLimitHandler);

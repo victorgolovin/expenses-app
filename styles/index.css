@@ -80,9 +80,57 @@
     line-height: 38px;
 }
 
-.stats-changeLimitBtn {
+
+.expenses-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.7);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.expenses-popup-open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.popup-content {
+    position: relative;
+    width: 777px;
+    max-height: 100%;
+    padding: 40px;
+    overflow-y: auto;
+    background-color: #fff;
+}
+
+.popup-changeLimitBtn {
     cursor: pointer;
 }
+
+.popup-inner-btn {
+    display: flex;
+}
+
+.popup-close-btn {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    background-image: url(..//files/cancel-btn-mini.png);
+  }
+
+.expenses-body-fixed {
+    overflow: hidden;
+  }
 
 .stats-statusText-positive {
     font-size: 32px;
@@ -181,7 +229,7 @@
         line-height: 30px;
     }
     
-    .stats-changeLimitBtn {
+    .popup-changeLimitBtn {
         width: 20px;
         height: 20px;
     }
@@ -278,7 +326,7 @@
         line-height: 25px;
     }
     
-    .stats-changeLimitBtn {
+    .popup-changeLimitBtn {
         width: 15px;
         height: 15px;
     }
