@@ -12,7 +12,6 @@ const CURRENCY = "руб.";
 const POPUP_OPENED_CLASSNAME = "expenses-popup-open";
 const BODY_FIXED_CLASSNAME = "expenses-body-fixed";
 
-
 const inputNode = document.getElementById("expense-input");
 const categorySelectNode = document.getElementById("category-select");
 const addButtonNode = document.getElementById("add-button");
@@ -25,13 +24,11 @@ const validationMessage = document.getElementById("expensesValidation-message");
 const popupInputNode = document.getElementById("expenses-popup-input");
 const popupValidationMessage = document.getElementById("popup-expensesValidation-message");
 
-
 const bodyNode = document.getElementById("body");
 const popupNode = document.getElementById("expenses-popup");
 const btnOpenNode = document.getElementById("popup-changeLimitBtn");
 const popupContentNode = document.getElementById("expenses-popup");
 const btnCloseNode = document.getElementById("popup-close-btn");
-
 
 const limitNode = document.getElementById("limitValue");
 let limit = parseInt(limitNode.innerText);
@@ -55,7 +52,9 @@ const renderStatus = () => {
     statusNode.innerText = STATUS_IN_LIMIT;
     statusNode.className = STATUS_IN_LIMIT_TEXT;
   } else {
-    statusNode.innerText = `${STATUS_OUT_OF_LIMIT} (${limit - total} ${CURRENCY})`;
+    statusNode.innerText = `${STATUS_OUT_OF_LIMIT} (${
+      limit - total
+    } ${CURRENCY})`;
     statusNode.className = STATUS_OUT_OF_LIMIT_TEXT;
   }
 };
@@ -107,17 +106,21 @@ const validation = () => {
 const popupValidation = () => {
   if (!popupInputNode.value) {
     popupValidationMessage.innerText = ENTER_THE_LIMIT_TEXT;
-    popupValidationMessage.classList.remove("popup-expensesValidation-message-hidden");
+    popupValidationMessage.classList.remove(
+      "popup-expensesValidation-message-hidden"
+    );
     return;
   }
 
   if (popupInputNode.value) {
     popupValidationMessage.innerText = CLICK_SEND_TEXT;
-    popupValidationMessage.classList.remove("popup-expensesValidation-message-hidden");
+    popupValidationMessage.classList.remove(
+      "popup-expensesValidation-message-hidden"
+    );
   }
 
   popupValidationMessage.add("popup-expensesValidation-message-hidden");
-}
+};
 
 inputNode.addEventListener("input", () => {
   validation();
@@ -126,7 +129,6 @@ inputNode.addEventListener("input", () => {
 popupInputNode.addEventListener("input", () => {
   popupValidation();
 });
-
 
 const addButtonHandler = () => {
   validation();
