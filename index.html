@@ -5,32 +5,38 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Expenses App</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="files/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="files/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="files/favicon-16x16.png">
+ <link rel="manifest" href="/site.webmanifest">
     <link rel="stylesheet" href="styles/main.css">
 
   </head>
   <body>
     <div class="expenses">
         <div class="container">
-            <h1 class="expensesTitle">Учет расходов</h1>
-        <div class="expensesInputList">
+            <h1 class="expenses-title">Учет расходов</h1>
+        <div class="expenses-input-list">
         <div class="moneyInput rub">
           <input 
-          class="moneyInput-input" 
+          class="expense-input" 
           type="number" 
           min="1"
-          id="expenseInput" 
+          id="expense-input" 
            />
-           <select id="categorySelect" class="categorySelect">
+           <select id="category-select" class="category-select">
             <option hidden disabled selected value="Категория">Категория</option>
             <option value="Продукты">Продукты</option>
             <option value="Кафе">Кафе и рестораны</option>
-            <option>Квартира</option>
-            <option>Авто</option>
+            <option value="Квартира">Квартира</option>
+            <option value="Путешествие">Путешествие</option>
+            <option value="Азартные игры">Азартные игры</option>
+            <option value="Авто">Авто</option>
           </select>
         </div>
 
         <div class="expenses-button">
-            <button id="addButton" class="addButton">Добавить</button>
+            <button id="add-button" class="add-button">Добавить</button>
         </div>
       </div>
 
@@ -64,20 +70,20 @@
             </div>
             <div class="stats-total">
               <span class="label">Всего:</span>
-              <span id="totalValue" class="rub">0 руб.</span>
+              <span id="total-value" class="rub">0 руб.</span>
             </div>
             <div class="stats-status">
               <span class="label">Статус:</span>
-              <span id="statusText" class="stats-statusText-positive">
+              <span id="status-text" class="stats-status-text-positive">
                 Все хорошо</span
               >
             </div>
-            <button id="clearButton" class="clear-button">Сбросить расходы</button>
+            <button id="clear-button" class="clear-button">Сбросить расходы</button>
           </div>
     
           <div class="history">
             <div class="history-title label">История:</div>
-            <ol id="historyList" class="historyList"></ol>
+            <ol id="history-list" class="history-list"></ol>
           </div>
     </div>
     </div>

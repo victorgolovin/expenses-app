@@ -8,21 +8,21 @@
   margin: 0 auto;
 }
 
-.expensesTitle {
+.expenses-title {
   font-weight: 700;
   font-size: 32px;
   line-height: 38px;
   margin-bottom: 40px;
 }
 
-.expensesInputList {
+.expenses-input-list {
   display: flex;
   gap: 28px;
   width: 910px;
   margin-bottom: 65px;
 }
 
-.moneyInput-input {
+.expense-input {
   width: 484px;
   height: 58px;
   font-size: 32px;
@@ -31,7 +31,7 @@
   margin-bottom: 20px;
 }
 
-.categorySelect {
+.category-select {
   width: 510px;
   height: 75px;
   font-size: 32px;
@@ -52,7 +52,7 @@
   display: none;
 }
 
-.addButton {
+.add-button {
   width: 370px;
   height: 58px;
   font-size: 32px;
@@ -159,13 +159,13 @@
   overflow: hidden;
 }
 
-.stats-statusText-positive {
+.stats-status-text-positive {
   font-size: 32px;
   line-height: 38px;
   color: green;
 }
 
-.stats-statusText-negative {
+.stats-status-text-negative {
   font-size: 32px;
   line-height: 38px;
   color: red;
@@ -206,12 +206,12 @@
     margin-bottom: 30px;
   }
 
-  .expensesInputList {
+  .expenses-input-list {
     width: 650px;
     margin-bottom: 50px;
   }
 
-  .moneyInput-input {
+  .expense-input {
     width: 300px;
     height: 30px;
     font-size: 20px;
@@ -219,7 +219,7 @@
     padding: 10px 0 9px 22px;
   }
 
-  .categorySelect {
+  .category-select {
     width: 325px;
     height: 50px;
     font-size: 20px;
@@ -227,7 +227,7 @@
     padding: 10px 0 9px 22px;
   }
 
-  .addButton {
+  .add-button {
     width: 300px;
     height: 50px;
     font-size: 20px;
@@ -259,13 +259,44 @@
     height: 20px;
   }
 
-  .stats-statusText-positive {
+  .expenses-validation-message,
+  .popup-expensesValidation-message {
+    font-size: 20px;
+    line-height: 30px;
+  }
+
+  .popup-content {
+    padding: 20px;
+  }
+
+  .popup-text {
+    font-size: 20px;
+    line-height: 30px;
+    margin-bottom: 30px;
+  }
+
+  .popup-inner-btn {
+    width: 300px;
+    height: 50px;
+    font-size: 20px;
+    line-height: 30px;
+  }
+
+  .expenses-popup-input {
+    width: 300px;
+    height: 30px;
+    font-size: 20px;
+    line-height: 30px;
+    padding: 10px 0 9px 22px;
+  }
+
+  .stats-status-text-positive {
     font-size: 20px;
     line-height: 30px;
     color: green;
   }
 
-  .stats-statusText-negative {
+  .stats-status-text-negative {
     font-size: 20px;
     line-height: 30px;
     color: red;
@@ -285,7 +316,7 @@
 }
 
 @media (max-width: 769px) {
-  .expensesInputList {
+  .expenses-input-list {
     width: 100%;
     flex-direction: column;
   }
@@ -301,7 +332,7 @@
 }
 
 @media (max-width: 435px) {
-  .moneyInput-input {
+  .expense-input {
     width: 200px;
     height: 30px;
     font-size: 15px;
@@ -309,7 +340,7 @@
     padding: 5px 0 5px 10px;
   }
 
-  .categorySelect {
+  .category-select {
     width: 215px;
     height: 40px;
     font-size: 15px;
@@ -317,7 +348,7 @@
     padding: 5px 0 5px 10px;
   }
 
-  .addButton {
+  .add-button {
     width: 215px;
     height: 40px;
     font-size: 15px;
@@ -354,13 +385,52 @@
     height: 15px;
   }
 
-  .stats-statusText-positive {
+  .expenses-validation-message,
+  .popup-expensesValidation-message {
+    font-size: 15px;
+    line-height: 25px;
+  }
+
+  .popup-content {
+    padding: 15px;
+  }
+
+  .popup-text {
+    font-size: 15px;
+    line-height: 25px;
+    margin-bottom: 20px;
+  }
+
+  .popup-inner-btn {
+    width: 215px;
+    height: 40px;
+    font-size: 15px;
+    line-height: 25px;
+  }
+
+  .expenses-popup-input {
+    width: 200px;
+    height: 30px;
+    font-size: 15px;
+    line-height: 25px;
+    padding: 5px 0 5px 10px;
+  }
+
+  .popup-close-btn {
+    right: 5px;
+    top: 5px;
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+  }
+
+  .stats-status-text-positive {
     font-size: 15px;
     line-height: 25px;
     color: green;
   }
 
-  .stats-statusText-negative {
+  .stats-status-text-negative {
     font-size: 15px;
     line-height: 25px;
     color: red;
