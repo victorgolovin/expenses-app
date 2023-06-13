@@ -1,6 +1,7 @@
 const STATUS_IN_LIMIT = "Все хорошо";
 const STATUS_OUT_OF_LIMIT = "Все плохо";
 const CHANGE_LIMIT_TEXT = "Новый лимит";
+const CURRENCY = "руб.";
 
 const inputNode = document.getElementById("expenseInput");
 const categorySelectNode = document.getElementById("categorySelect");
@@ -12,6 +13,7 @@ const historyList = document.getElementById("historyList");
 const changeLimitBtn = document.getElementById("popup-inner-btn");
 const validationMessage = document.getElementById("expensesValidation-message");
 const popupInputNode = document.getElementById("expenses-popup-input");
+const popupValidationMessage = document.getElementById("popup-expensesValidation-message");
 
 const POPUP_OPENED_CLASSNAME = "expenses-popup-open";
 const BODY_FIXED_CLASSNAME = "expenses-body-fixed";
@@ -19,7 +21,7 @@ const BODY_FIXED_CLASSNAME = "expenses-body-fixed";
 const bodyNode = document.getElementById("body");
 const popupNode = document.getElementById("expenses-popup");
 const btnOpenNode = document.getElementById("popup-changeLimitBtn");
-const popupContentNode = document.getElementById("expenses-popup")
+const popupContentNode = document.getElementById("expenses-popup");
 const btnCloseNode = document.getElementById("popup-close-btn");
 
 const limitNode = document.getElementById("limitValue");
@@ -38,7 +40,7 @@ const getTotal = () => {
 
 const renderStatus = () => {
   const total = getTotal(expenses);
-  totalValueNode.innerText = total;
+  totalValueNode.innerText = `${total} ${CURRENCY}`;
 
   if (total <= limit) {
     statusNode.innerText = STATUS_IN_LIMIT;
@@ -54,7 +56,7 @@ const renderHistory = () => {
   expenses.forEach(function (expense) {
     const historyItem = document.createElement("li");
     historyItem.className = "rub";
-    historyItem.innerText = `${expense.category} - ${expense.amount}`;
+    historyItem.innerText = `${expense.category} - ${expense.amount} ${CURRENCY}`;
     historyList.appendChild(historyItem);
   });
 };
@@ -77,7 +79,6 @@ const clearInput = (input) => {
   input.value = "";
 };
 
-// валидация
 const validation = () => {
   if (!inputNode.value) {
     validationMessage.innerText = `Введите сумму трат!`;
@@ -94,12 +95,33 @@ const validation = () => {
   validationMessage.classList.add("expenses-validation-message-hidden");
 };
 
+const popupValidation = () => {
+  if (!popupInputNode.value) {
+    popupValidationMessage.innerText = `Введите новый лимит!`;
+    popupValidationMessage.classList.remove("popup-expensesValidation-message-hidden");
+    return;
+  }
+
+  if (popupInputNode.value) {
+    popupValidationMessage.innerText = `Нажмите отправить!`;
+    popupValidationMessage.classList.remove("popup-expensesValidation-message-hidden");
+    return;
+  }
+
+  popupValidationMessage.add("popup-expensesValidation-message-hidden");
+}
+
+
 inputNode.addEventListener("input", () => {
   validation();
 });
 
+popupInputNode.addEventListener("input", () => {
+  popupValidation();
+});
+
+
 const addButtonHandler = () => {
-  // валидация
   validation();
 
   const currentAmount = getExpenseFromUser();
@@ -130,31 +152,37 @@ const changeLimitHandler = () => {
   const newLimitValue = parseInt(newLimit);
 
   if (!newLimitValue) {
+    "Введите лимит!"
     return;
   }
 
-  limitNode.innerText = newLimitValue;
+  limitNode.innerText = `${newLimitValue} ${CURRENCY}`;
   limit = newLimitValue;
 
-  expensesTogglePopup()
+  expensesTogglePopup();
   render();
 };
 
-// popup
-popupNode.addEventListener('click', (event) => {
-  const isClickOutsideContent = !event.composedPath().includes(popupContentNode)
+
+popupNode.addEventListener("click", (event) => {
+  const isClickOutsideContent = !event
+    .composedPath()
+    .includes(popupContentNode);
 
   if (isClickOutsideContent) {
     expensesTogglePopup();
   }
-})
+
+  clearInput(popupInputNode);
+  popupValidation();
+});
 
 const expensesTogglePopup = () => {
   popupNode.classList.toggle(POPUP_OPENED_CLASSNAME);
-}
+};
 
-btnOpenNode.addEventListener('click', expensesTogglePopup);
-btnCloseNode.addEventListener('click', expensesTogglePopup);
+btnOpenNode.addEventListener("click", expensesTogglePopup);
+btnCloseNode.addEventListener("click", expensesTogglePopup);
 addButtonNode.addEventListener("click", addButtonHandler);
 clearBunntonNode.addEventListener("click", clearButtonHandler);
 changeLimitBtn.addEventListener("click", changeLimitHandler);

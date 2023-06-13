@@ -49,15 +49,15 @@
               >
               <div id="expenses-popup" class="expenses-popup">
                 <div class="popup-content ">
-                  <p>Введите новый лимит!</p>
+                  <p class="popup-text">Введите новый лимит!</p>
                   <input 
                   class="expenses-popup-input" 
                   type="number" 
                   min="1"
                   id="expenses-popup-input">
-                  <div class="popup-inner-btn-wrapper">
-                    <button id="popup-inner-btn" class="popup-inner-btn"> Отправить</button>
-                  </div>
+                  <button id="popup-inner-btn" class="popup-inner-btn"> Отправить</button>
+                  <div id="popup-expensesValidation-message" 
+                  class="popup-expensesValidation-message popup-expensesValidation-message-hidden"></div>
                   <div id="popup-close-btn" class="popup-close-btn"></div>
                 </div>
               </div>
@@ -83,6 +83,5 @@
     </div>
     
     <script src="js/index.js"></script>
-    <script src="js/popup.js"></script>
   </body>
 </html>
