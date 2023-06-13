@@ -39,6 +39,18 @@
     padding: 10px 0 9px 22px;
 }
 
+.expenses-validation-message {
+    font-size: 25px;
+    line-height: 30px;
+    margin-bottom: 30px;
+    color: red;
+  }
+
+.expenses-validation-message-hidden {
+    display: none;
+  }
+
+  
 .addButton {
     width: 370px;
     height: 58px;
@@ -243,6 +255,12 @@
     .expenses-info-list {
         width: 100%;
     }
+
+    .expenses-validation-message {
+        font-size: 15px;
+        line-height: 25px;
+        margin-bottom: 20px;
+      }
     
     .label {
         font-weight: 700;
