@@ -114,12 +114,10 @@ const popupValidation = () => {
   if (popupInputNode.value) {
     popupValidationMessage.innerText = CLICK_SEND_TEXT;
     popupValidationMessage.classList.remove("popup-expensesValidation-message-hidden");
-    return;
   }
 
   popupValidationMessage.add("popup-expensesValidation-message-hidden");
 }
-
 
 inputNode.addEventListener("input", () => {
   validation();
@@ -170,7 +168,6 @@ const changeLimitHandler = () => {
   expensesTogglePopupHandler();
   render();
 };
-
 
 popupNode.addEventListener("click", (event) => {
   const isClickOutsideContent = !event
